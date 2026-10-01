@@ -1,0 +1,93 @@
+.register-container{
+    height:100vh;
+
+    background-image:url("../images/airport.jpeg");
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.register-form{
+    width:400px;
+
+    background:rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(15px);
+
+    padding:40px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.register-form h2{
+    color:white;
+    margin-bottom:25px;
+}
+
+.register-form input{
+    width:100%;
+
+    padding:12px;
+
+    margin:10px 0;
+
+    border:none;
+
+    border-radius:8px;
+}
+
+.register-form button{
+    width:100%;
+
+    padding:12px;
+
+    background:#007bff;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:16px;
+}
+
+.register-form button:hover{
+    transform:scale(1.03);
+}
+
+.register-form p{
+    color:white;
+    margin-top:15px;
+}
+.password-box{
+    position: relative;
+    width:100%;
+    margin: 10px 0;
+}
+
+.password-box input{
+    width: calc(100%-50px);
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+}
+
+.eye{
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 10;
+}

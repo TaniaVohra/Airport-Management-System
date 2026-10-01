@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Available Flights - SkyPort</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    padding:40px;
+    background:linear-gradient(135deg,#001f54,#034078,#1282a2,#00c6ff);
+}
+
+.heading{
+    text-align:center;
+    color:white;
+    margin-bottom:40px;
+}
+
+.heading h1{
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+.heading p{
+    font-size:18px;
+}
+
+.flights{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    transition:0.4s;
+
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.flight-name{
+    font-size:28px;
+    font-weight:bold;
+    color:#003366;
+    margin-bottom:15px;
+}
+
+.flight-card{
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 900px;
+}
+
+.info{
+    margin:10px 0;
+    font-size:18px;
+    color:#444;
+}
+
+.price{
+    font-size:28px;
+    color:#00a651;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+.book-btn{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    background:#28a745;
+    color:white;
+    padding:12px;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.book-btn:hover{
+    background:#218838;
+}
+
+.home{
+    text-align:center;
+    margin-top:30px;
+}
+
+.home a{
+    text-decoration:none;
+    background:white;
+    color:#003366;
+    padding:12px 25px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="heading">
+    <h1>✈️ Available Flights</h1>
+    <p>Choose your flight and book instantly</p>
+</div>
+
+<div class="flights">
+
+{% for flight in flights %}
+
+<div class="card">
+
+    <div class="flight-name">
+        ✈️ {{ flight[1] }}
+    </div>
+
+    <div class="info">
+        📍 <b>{{ flight[2] }}</b> ➜ <b>{{ flight[3] }}</b>
+    </div>
+
+    <div class="info">
+        📅 {{ flight[4] }}
+    </div>
+
+    <div class="price">
+        ₹{{ flight[5] }}
+    </div>
+
+    <a href="/book/{{ flight[0] }}" class="book-btn">
+        🎫 Book Now
+    </a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<div class="home">
+    <a href="/dashboard">🏠 Back to Dashboard</a>
+</div>
+
+</body>
+</html>

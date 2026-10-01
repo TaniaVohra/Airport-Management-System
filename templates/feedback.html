@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#0f172a,#2563eb);
+        }
+
+        .feedback-box{
+            background:white;
+            width:400px;
+            padding:30px;
+            border-radius:20px;
+            text-align:center;
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1{
+            color:#2563eb;
+            margin-bottom:20px;
+        }
+
+        input,
+        textarea{
+            width:100%;
+            padding:12px;
+            margin:10px 0;
+            border:1px solid #ccc;
+            border-radius:10px;
+            font-size:15px;
+        }
+
+        textarea{
+            height:120px;
+            resize:none;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            background:#2563eb;
+            color:white;
+            border:none;
+            border-radius:10px;
+            font-size:16px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            background:#1d4ed8;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="feedback-box">
+
+    <h1>⭐ Feedback Form</h1>
+
+    <form method="POST">
+
+        <input type="text"
+               name="name"
+               placeholder="Enter Your Name"
+               required>
+
+        <textarea
+            name="message"
+            placeholder="Write your feedback"
+            required></textarea>
+
+        <button type="submit">
+            Submit Feedback
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

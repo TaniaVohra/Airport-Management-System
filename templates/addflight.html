@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Flight - SkyPort</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#001f54,#034078,#1282a2,#00c6ff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+.container{
+    width:500px;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+}
+
+.back-btn{
+    text-decoration:none;
+    color:#003366;
+    font-weight:bold;
+    display:inline-block;
+    margin-bottom:20px;
+}
+
+h1{
+    text-align:center;
+    color:#003366;
+    margin-bottom:25px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    background:#00c853;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#009624;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="/manageflights" class="back-btn">⬅ Back to Manage Flights</a>
+
+<h1>✈️ Add New Flight</h1>
+
+<form method="POST">
+
+    <input type="text" name="flight_name" placeholder="Flight Name" required>
+
+    <input type="text" name="source" placeholder="Source" required>
+
+    <input type="text" name="destination" placeholder="Destination" required>
+
+    <input type="date" name="departure_date" required>
+
+    <input type="number" name="price" placeholder="Price" required> 
+    
+    <button type="submit">➕ Add Flight</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

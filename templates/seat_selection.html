@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Seat Selection - SkyPort</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#001f54,#034078,#1282a2,#00c6ff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:750px;
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+}
+
+h1{
+    text-align:center;
+    color:#003366;
+    margin-bottom:20px;
+}
+
+.flight-info{
+    background:#f4f8ff;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+}
+
+.flight-info p{
+    margin:10px 0;
+    font-size:18px;
+}
+
+.info{
+    font-size:18px;
+    margin:10px 0;
+    color:#444;
+    font-weight:bold;
+}
+
+.legend{
+    text-align:center;
+    margin:20px 0;
+    line-height:35px;
+    font-size:16px;
+}
+
+.passenger-box{
+    background:#f8fbff;
+    padding:15px;
+    border-radius:15px;
+    margin-bottom:15px;
+    border-left:5px solid #003366;
+}
+
+label{
+    display:block;
+    margin-bottom:10px;
+    font-weight:bold;
+    color:#003366;
+}
+
+select{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:2px solid #003366;
+    font-size:16px;
+    background:white;
+}
+
+select:focus{
+    outline:none;
+    border-color:#00c6ff;
+}
+
+button{
+    width:100%;
+    background:#003366;
+    color:white;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#0055aa;
+    transform:translateY(-2px);
+}
+
+select{
+    width:100%;
+    padding:12px;
+    border:2px solid #00c6ff;
+    border-radius:10px;
+    font-size:16px;
+    margin-top:8px;
+    margin-bottom:15px;
+}
+
+.passenger-box{
+    background:#f8fbff;
+    padding:15px;
+    margin:15px 0;
+    border-radius:12px;
+    border-left:5px solid #00c6ff;
+}
+
+label{
+    font-weight:bold;
+    color:#003366;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#0077ff;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#005edb;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>✈️ SkyPort Seat Selection</h1>
+
+<div class="flight-info">
+    <p><b>✈ Flight:</b> {{ flight_name }}</p>
+    <p><b>🛫 From:</b> {{ from_city }}</p>
+    <p><b>🛬 To:</b> {{ to_city }}</p>
+</div>
+
+<div class="info">
+👥 Passengers: {{ passenger_count }}
+</div>
+
+<div class="info">
+💺 Class: {{ class_type }}
+</div>
+
+<form method="POST" action="/payment">
+
+<input type="hidden" name="passengers" value="{{ passengers }}">
+<input type="hidden" name="flight_name" value="{{ flight_name }}">
+<input type="hidden" name="from_city" value="{{ from_city }}">
+<input type="hidden" name="to_city" value="{{ to_city }}">
+<input type="hidden" name="class_type" value="{{ class_type }}">
+<input type="hidden" name="departure_date" value="{{ departure_date }}">
+<input type="hidden" name="price" value="{{ price }}">
+<input type="hidden" name="passenger_count" value="{{passenger_count}}">
+
+<h3 style="text-align:center;color:#003366;margin-top:20px;">
+✈️ Select Your Seats
+</h3>
+
+<div class="legend">
+🟢 Available &nbsp;&nbsp;
+🪟 Window (A,F) &nbsp;&nbsp;
+🚶 Aisle (C,D) &nbsp;&nbsp;
+💺 Middle (B,E)
+</div>
+
+{% for passenger in passengers %}
+
+<div class="passenger-box">
+
+<label>
+👤 {{ passenger }} Seat:
+</label>
+
+<select name="seat_{{ loop.index0 }}">
+
+{% for seat in seats %}
+
+<option value="{{ seat }}"
+{% if seat in booked_seats %}disabled{% endif %}>
+
+{{ seat }}
+
+{% if seat in booked_seats %}
+❌ Booked
+
+{% elif seat[-1] in ['A','F'] %}
+🪟 Window
+
+{% elif seat[-1] in ['C','D'] %}
+🚶 Aisle
+
+{% else %}
+💺 Middle
+
+{% endif %}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+{% endfor %}
+
+<br>
+
+<button type="submit">
+✅ Confirm Booking
+</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

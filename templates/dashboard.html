@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - SkyPort</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background: linear-gradient(135deg,#0f172a,#1e3a8a);
+            min-height:100vh;
+        }
+
+        .navbar{
+            background:#003366;
+            color:white;
+            padding:18px 40px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            position:sticky;
+            top:0;
+        }
+
+        .navbar h2{
+            font-size:28px;
+        }
+
+        .navbar a{
+            color:white;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+        .container{
+            padding:40px;
+        }
+
+        .welcome-box{
+            background:rgba(255,255,255,0.95);
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.2);
+            margin-bottom:30px;
+        }
+
+        .welcome-box h1{
+            color:#003366;
+            font-size:42px;
+            margin-bottom:10px;
+        }
+
+        .welcome-box p{
+            color:#555;
+            font-size:18px;
+        }
+
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:25px;
+        }
+
+        .card{
+            background:white;
+            padding:40px;
+            border-radius:20px;
+            text-align:center;
+            box-shadow:0 8px 20px rgba(0,0,0,0.15);
+            transition:0.4s;
+            cursor:pointer;
+        }
+
+        .card:hover{
+            transform:translateY(-10px) scale(1.03);
+        }
+
+        .card a{
+            text-decoration:none;
+            color:#003366;
+            font-size:24px;
+            font-weight:bold;
+        }
+
+        .logout a{
+            color:#dc2626;
+        }
+
+        .footer{
+            text-align:center;
+            margin-top:40px;
+            color:white;
+        }
+
+        @media(max-width:768px){
+
+            .cards{
+                grid-template-columns:1fr;
+            }
+
+            .welcome-box h1{
+                font-size:30px;
+            }
+        }
+        .booking-count{
+    margin-bottom: 40px;
+}
+
+.booking-count h1{
+    font-size: 50px;
+    color: #1e3a8a;
+}
+
+    </style>
+
+</head>
+<body>
+
+<div class="navbar">
+    <h2>✈️ SkyPort</h2>
+    <a href="/">Home</a>
+</div>
+
+<div class="container">
+
+
+    <div class="cards">
+
+        <div class="card">
+            <a href="/search">✈️ Search Flights</a>
+        </div>
+
+        <div class="card">
+            <a href="/search">🎫 Book Flight</a>
+        </div>
+
+        <div class="card">
+            <a href="/mybookings">📋 My Bookings</a>
+        </div>
+
+        <div class="card">
+            <a href="/about">ℹ️ About Us</a>
+        </div>
+
+        <div class="card logout">
+            <a href="/login">🚪 Logout</a>
+        </div>
+
+        <div class="card">
+            <a href="/contact">📞 Contact Us</a>
+        </div>
+        <div class="card">
+    <a href="/feedback">⭐ Feedback</a>
+</div>
+
+
+    </div>
+
+    <div class="footer">
+        <p>© 2026 SkyPort Airport Management System</p>
+    </div>
+
+</div>
+
+</body>
+</html>

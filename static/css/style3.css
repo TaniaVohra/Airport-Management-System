@@ -1,0 +1,76 @@
+.login-container{
+    height:100vh;
+
+    background-image:url("../images/airport.jpeg");
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-form{
+    width:400px;
+
+    background:rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(15px);
+
+    padding:40px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.login-form h2{
+    color:white;
+    margin-bottom:25px;
+}
+
+.login-form input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+}
+
+.password-box{
+    position:relative;
+    width:100%;
+    margin:15px 0;
+}
+.password-box input{
+    width:100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+}
+.password-box span{
+    position:absolute;
+    right:15px;
+    top:12px;
+    cursor:pointer;
+    font-size: 18px;
+}
+
+.login-form button{
+    width:100%;
+    padding:12px;
+
+    background:#007bff;
+    color:white;
+
+    border:none;
+    border-radius:8px;
+
+    cursor:pointer;
+}
+
+.login-form p{
+    color:white;
+    margin-top:15px;
+}

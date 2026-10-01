@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - SkyPort</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+</head>
+<body>
+
+<div class="register-container">
+
+    <form class="register-form" method="POST">
+
+        <h2>Create Account</h2>
+
+        <input type="text" name="name" placeholder="Full Name" required>
+
+        <input type="email" name="email" placeholder="Email Address" required>
+
+        <input type="text" name="phone" placeholder="Phone Number" required>
+
+        <div class="password-box">
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <span class="eye" onclick="togglePassword()">👁️</span>
+        </div>
+
+        <div class="password-box">
+            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
+            <span class="eye" onclick="toggleConfirmPassword()">👁️</span>
+        </div>
+
+        <button type="submit">Register</button>
+
+        <p>Already have an account? <a href="/login">Login</a></p>
+
+    </form>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

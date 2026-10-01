@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard - SkyPort</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#001f54,#034078,#1282a2);
+    min-height:100vh;
+}
+
+.navbar{
+    background:#002244;
+    color:white;
+    padding:20px 40px;
+}
+
+.navbar h2{
+    font-size:30px;
+}
+
+.container{
+    padding:40px;
+}
+
+.heading{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    margin-bottom:30px;
+}
+
+.heading h1{
+    color:#003366;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card h2{
+    color:#003366;
+    margin-bottom:10px;
+}
+
+.card h1{
+    color:#0077cc;
+    font-size:45px;
+}
+
+.links{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.link-card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.link-card a{
+    text-decoration:none;
+    color:#003366;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.chart-box{
+    width: 500px;
+    height: 350px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th{
+    background: #3498db;
+    color: white;
+    padding:12px;
+}
+
+td{
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+h2{
+    text-align: center;
+    color: white;
+}
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2>🛫 SkyPort Admin Panel</h2>
+</div>
+
+<div class="container">
+
+    <div class="heading">
+        <h1>Welcome Admin 👨‍💼</h1>
+        <p>Manage your airport system here.</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>Total Users</h2>
+            <h1>{{ total_users }}</h1>
+        </div>
+
+        <div class="card">
+            <h2>Total Bookings</h2>
+            <h1>{{ total_bookings }}</h1>
+        </div>
+
+        <div class="card">
+            <h2>Total Feedbacks</h2>
+            <h1>{{ total_feedback }}</h1>
+        </div>
+
+        <div class="card">
+            <h2>Total Flights</h2>
+            <h1>{{total_flights}}</h1>
+        </div>
+
+    </div>
+    <div class="chart-box">
+        <canvas id="myChart" width="400" height="250"></canvas>
+    </div>
+
+    <h2>Recent Bookings</h2>
+    <table border="1" width="100%">
+        <tr>
+            <th>ID</th>
+            <th>Flight</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Date</th>
+            <th>Price</th>
+        </tr>
+        {% for booking in bookings %}
+        <tr>
+            <td>{{booking[0]}}</td>
+            <td>{{booking[1]}}</td>
+            <td>{{booking[2]}}</td>
+            <td>{{booking[3]}}</td>
+            <td>{{booking[4]}}</td>
+            <td>{{booking[5]}}</td>
+        
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="links">
+
+        <div class="link-card">
+            <a href="/viewfeedback">⭐ View Feedbacks</a>
+        </div>
+
+        <div class="link-card">
+            <a href="/manageflights">✈️ Manage Flights</a>
+        </div>
+
+        <div class="link-card">
+            <a href="/viewbookings">🎫 View Bookings</a>
+        </div>
+
+        <div class="link-card">
+            <a href="/login">🚪 Logout</a>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Users', 'Bookings', 'Feedbacks'],
+        datasets: [{
+            label: 'SkyPort Statistics',
+            data: [
+                {{ total_users }},
+                {{ total_bookings }},
+                {{ total_feedback }}
+            ],
+            backgroundColor:['#3498db',
+                '#2ecc71',
+                '#f39c12'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins:{
+            title:{
+                display:true,
+                text:'Airport Statistics Dashboard'
+            },
+            legend:{
+                position:"top"
+            }
+        },
+        scales: {
+            y: {
+                display:false
+            },
+            x:{display:false}
+        }
+    }
+});
+</script>
+
+</body>
+</html>

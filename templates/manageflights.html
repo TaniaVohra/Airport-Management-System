@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manage Flights - SkyPort</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#001f54,#034078,#1282a2,#00c6ff);
+    padding:40px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.heading{
+    text-align:center;
+    color:white;
+    margin-bottom:30px;
+}
+
+.heading h1{
+    font-size:45px;
+}
+
+.heading p{
+    margin-top:10px;
+    font-size:18px;
+}
+
+.table-box{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#003366;
+    color:white;
+    padding:18px;
+}
+
+td{
+    padding:16px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+}
+
+tr:nth-child(even){
+    background:#f8fbff;
+}
+
+tr:hover{
+    background:#dff3ff;
+}
+
+.price{
+    color:#009933;
+    font-weight:bold;
+}
+
+.home-btn{
+    display:inline-block;
+    margin-bottom:20px;
+    background:white;
+    color:#003366;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.add-btn{
+    display:inline-block;
+    background:#00c853;
+    color:white;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:10px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.add-btn:hover{
+    background:#009624;
+}
+
+.footer{
+    text-align:center;
+    color:white;
+    margin-top:25px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<a href="/admin" class="home-btn">🏠 Back to Admin</a>
+
+<div class="heading">
+    <h1>✈️ Manage Flights</h1>
+    <p>View and manage all available flights</p>
+</div>
+<a href="/addflight" class="add-btn">➕ Add Flight</a>
+
+<a href="/generate-flights" class="add-btn">Generate Flights</a>
+
+<div class="table-box">
+
+<table>
+
+<tr>
+    <th>ID</th>
+    <th>Flight</th>
+    <th>Source</th>
+    <th>Destination</th>
+    <th>Date</th>
+    <th>Price</th>
+    <th>Action</th>
+</tr>
+
+{% for flight in flights %}
+
+<tr>
+    <td>{{ flight[0] }}</td>
+    <td>{{ flight[1] }}</td>
+    <td>{{ flight[2] }}</td>
+    <td>{{ flight[3] }}</td>
+    <td>{{ flight[4] }}</td>
+    <td class="price">₹{{ flight[5] }}</td>
+    <td>
+    <a href="/editflight/{{ flight[0] }}">✏️ Edit</a>
+    |
+    <a href="/deleteflight/{{ flight[0] }}">❌ Delete</a>
+    </td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+<div class="footer">
+    <p>© 2026 SkyPort Airport Management System</p>
+</div>
+
+</div>
+
+</body>
+</html>

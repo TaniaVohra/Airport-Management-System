@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyPort Airport Management System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav>
+        <h1>✈️ Skyport</h1>
+
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/search">Flights</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+
+        <h2>Welcome to Skyport</h2>
+
+        <p>Book Flights Easily and Travel Comfortably</p>
+
+        <form action="/search" method="POST">
+
+            <input
+                type="text"
+                name="source"
+                placeholder="From"
+                required
+            >
+
+            <input
+                type="text"
+                name="destination"
+                placeholder="To"
+                required
+            >
+
+            <input
+                type="date"
+                name="departure_date"
+            >
+
+            <button type="submit">
+                Search Flights
+            </button>
+
+        </form>
+
+    </section>
+
+    <section class="destination">
+
+        <h2>Popular Destination</h2>
+
+        <div class="cards">
+            <div class="card">Delhi</div>
+            <div class="card">Mumbai</div>
+            <div class="card">Dubai</div>
+            <div class="card">Goa</div>
+        </div>
+
+    </section>
+
+    <section class="features">
+
+        <h2>Why Choose Us?</h2>
+
+        <ul>
+            <li>✔️ Easy Flight Booking</li>
+            <li>✔️ Secure Payment</li>
+            <li>✔️ Live Flight Updates</li>
+            <li>✔️ QR Boarding Pass</li>
+        </ul>
+
+    </section>
+
+    <footer>
+        <p>© 2026 Skyport Airport Management System</p>
+    </footer>
+
+</body>
+</html>

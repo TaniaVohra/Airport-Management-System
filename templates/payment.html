@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Gateway</title>
+
+    <style>
+
+        body{
+            margin:0;
+            padding:0;
+            font-family:Arial, sans-serif;
+            background:linear-gradient(135deg,#001f54,#00c6ff);
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .payment-box{
+            background:white;
+            width:400px;
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.3);
+            text-align:center;
+        }
+
+        h1{
+            color:#003366;
+            margin-bottom:20px;
+        }
+
+        .amount{
+            font-size:28px;
+            font-weight:bold;
+            color:#00a2ff;
+            margin-bottom:20px;
+        }
+
+        h3{
+            color:#333;
+        }
+
+        select{
+            width:100%;
+            padding:12px;
+            border-radius:10px;
+            border:1px solid #ccc;
+            font-size:16px;
+            margin-top:10px;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            margin-top:20px;
+            border:none;
+            border-radius:10px;
+            background:#00a2ff;
+            color:white;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#0077cc;
+        }
+
+        #payment-details input{
+            width:90%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="payment-box">
+
+    <h1>💳 Payment Gateway</h1>
+
+    <div class="amount">
+        ₹ {{ price }}
+    </div>
+
+    <form action="/payment-success" method="POST">
+
+        <input type="hidden" name="flight_name" value="{{ flight_name }}">
+        <input type="hidden" name="from_city" value="{{ from_city }}">
+        <input type="hidden" name="to_city" value="{{ to_city }}">
+        <input type="hidden" name="class_type" value="{{ class_type }}">
+        <input type="hidden" name="departure_date" value="{{ departure_date }}">
+        <input type="hidden" name="price" value="{{ price }}">
+        <input type="hidden" name="passengers" value="{{ passengers }}">
+        <input type="hidden" name="passenger_count" value="{{passengers|length}}">
+        <p>passenger count={{passenger_count}}</p>
+        {% for i in range(passenger_count|int) %}
+        <input type="hidden" name="seat_{{i}}" value="{{ seats[i] }}">
+        {% endfor %}
+
+
+        </h3>Select Payment Method</h3>
+
+        <select name="payment_method" id="payment_method">
+            <option value="UPI">UPI</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Debit Card">Debit Card</option>
+            <option value="Net Banking">Net Banking</option>
+        </select>
+        <div id="payment-details"></div>
+
+        <button type="submit">
+            Pay Now
+        </button>
+
+        <script>
+const paymentMethod = document.getElementById("payment_method");
+const paymentDetails = document.getElementById("payment-details");
+
+paymentMethod.addEventListener("change", function () {
+
+    if (this.value === "UPI") {
+
+        paymentDetails.innerHTML = `
+            <input type="text"
+                   name="upi_id"
+                   placeholder="Enter UPI ID"
+                   required>
+        `;
+
+    } else if (this.value === "Credit Card" || this.value === "Debit Card") {
+
+        paymentDetails.innerHTML = `
+            <input type="text"
+                   name="card_number"
+                   placeholder="Card Number"
+                   required>
+
+            <input type="text"
+                   name="expiry"
+                   placeholder="MM/YY"
+                   required>
+
+            <input type="password"
+                   name="cvv"
+                   placeholder="CVV"
+                   required>
+        `;
+
+    } else if (this.value === "Net Banking") {
+
+        paymentDetails.innerHTML = `
+            <input type="text"
+                   name="bank_name"
+                   placeholder="Bank Name"
+                   required>
+        `;
+    }
+
+});
+
+paymentMethod.dispatchEvent(new Event("change"));
+</script>
+
+    </form>
+
+</div>
+
+</body>
+</html>

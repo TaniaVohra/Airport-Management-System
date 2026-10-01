@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Payment Success</title>
+
+<style>
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:linear-gradient(to right,#004e92,#00c6ff);
+    font-family:Arial;
+}
+
+.box{
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    text-align:center;
+}
+
+h1{
+    color:green;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+    <h1>✅ Payment Successful</h1>
+    <h3>Your ticket is being generated...</h3>
+
+    <form action="/final-ticket" method="POST">
+
+        <input type="hidden" name="flight_name" value="{{ flight_name }}">
+        <input type="hidden" name="from_city" value="{{ from_city }}">
+        <input type="hidden" name="to_city" value="{{ to_city }}">
+        <input type="hidden" name="class_type" value="{{ class_type }}">
+        <input type="hidden" name="departure_date" value="{{ departure_date }}">
+        <input type="hidden" name="price" value="{{ price }}">
+        <input type="hidden" name="passengers" value="{{ passengers }}">
+        {% for i in range(seats|length) %}
+        <input type="hidden" name="seat_{{i}}" value="{{ seats[i]}}">
+        {% endfor %}
+        <input type="hidden" name="passenger_count" value="{{seats|length}}">
+
+        <input tyoe="hidden" name="payment_method" value="{{payment_method}}">
+
+        <button type="submit">🎫 View Ticket</button>
+
+    </form>
+</div>
+
+</body>
+</html>

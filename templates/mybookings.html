@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Bookings - SkyPort</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    padding:40px;
+    background:linear-gradient(135deg,#001f54,#034078,#1282a2,#00c6ff);
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.top-bar{
+    margin-bottom:25px;
+}
+
+.home-btn{
+    text-decoration:none;
+    background:white;
+    color:#003366;
+    padding:12px 22px;
+    border-radius:10px;
+    font-weight:bold;
+    box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
+
+.home-btn:hover{
+    background:#eaf4ff;
+}
+
+.heading{
+    text-align:center;
+    color:white;
+    margin-bottom:30px;
+}
+
+.heading h1{
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+.heading p{
+    font-size:18px;
+    opacity:0.9;
+}
+
+.table-box{
+    background:rgba(255,255,255,0.95);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#003366;
+    color:white;
+    padding:18px;
+    font-size:16px;
+}
+
+td{
+    padding:16px;
+    text-align:center;
+    border-bottom:1px solid #eaeaea;
+}
+
+tr:nth-child(even){
+    background:#f7fbff;
+}
+
+tr:hover{
+    background:#dff3ff;
+}
+
+.price{
+    color:#009933;
+    font-weight:bold;
+}
+
+.cancel-btn{
+    background:#ff4d4d;
+    color:white;
+    text-decoration:none;
+    padding:8px 15px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.cancel-btn:hover{
+    background:#d60000;
+}
+
+.footer{
+    text-align:center;
+    color:white;
+    margin-top:25px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="top-bar">
+        <a href="/dashboard" class="home-btn">🏠 Home</a>
+    </div>
+
+    <div class="heading">
+        <h1>📋 My Bookings</h1>
+        <p>Manage all your booked flights here ✈️</p>
+    </div>
+
+    <div class="table-box">
+
+        <table>
+
+            <tr>
+                <th>Flight</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Passenger</th>
+                <th>Seat</th>
+                <th>PNR</th>
+                <th>Action</th>
+            </tr>
+
+            {% for booking in bookings %}
+
+            <tr>
+                <td>{{ booking[1] }}</td>
+                <td>{{ booking[2] }}</td>
+                <td>{{ booking[3] }}</td>
+                <td>{{ booking[4] }}</td>
+                <td class="price">₹{{ booking[5] }}</td>
+                <td>{{ booking[6] }}</td>
+                <td>{{ booking[8] }}</td>
+                <td>{{ booking[9] }}</td>
+                <td>
+                <a href="/ticket/{{ booking[0] }}" class="ticket-btn">
+                🎫 Ticket
+                </a>
+
+                <br><br>
+
+                <a href="/cancel/{{ booking[0] }}" class="cancel-btn">
+                ❌ Cancel
+                </a>
+                </td>
+
+                
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+    <div class="footer">
+        <p>© 2026 SkyPort Airport Management System</p>
+    </div>
+
+</div>
+
+</body>
+</html>

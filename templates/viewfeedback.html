@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Feedbacks</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,#0f172a,#2563eb);
+            margin:0;
+            padding:40px;
+        }
+
+        .container{
+            max-width:900px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1{
+            text-align:center;
+            color:#2563eb;
+            margin-bottom:25px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th{
+            background:#2563eb;
+            color:white;
+            padding:12px;
+        }
+
+        td{
+            padding:12px;
+            text-align:center;
+            border-bottom:1px solid #ddd;
+        }
+
+        tr:hover{
+            background:#f3f4f6;
+        }
+
+        .btn{
+            display:inline-block;
+            margin-top:20px;
+            padding:10px 20px;
+            background:#2563eb;
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+        }
+
+        .btn:hover{
+            background:#1d4ed8;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>⭐ User Feedbacks</h1>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Message</th>
+        </tr>
+
+        {% for f in feedbacks %}
+        <tr>
+            <td>{{ f[0] }}</td>
+            <td>{{ f[1] }}</td>
+            <td>{{ f[2] }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <a href="/dashboard" class="btn">🏠 Dashboard</a>
+
+</div>
+
+</body>
+</html>

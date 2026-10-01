@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SkyPort Boarding Pass</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#0ea5e9);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+.boarding-pass{
+    width:850px;
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+.header{
+    background:#0284c7;
+    color:white;
+    padding:25px;
+    text-align:center;
+}
+
+.header h1{
+    margin-bottom:5px;
+}
+
+.content{
+    padding:25px;
+}
+
+.route{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.city{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.arrow{
+    font-size:35px;
+    color:#0284c7;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.box{
+    background:#f8fafc;
+    padding:15px;
+    border-radius:12px;
+}
+
+.label{
+    color:gray;
+    font-size:14px;
+}
+
+.value{
+    font-size:20px;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+.status{
+    margin-top:20px;
+    text-align:center;
+    background:#22c55e;
+    color:white;
+    padding:12px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.qr{
+    text-align:center;
+    margin-top:20px;
+}
+
+.qr img{
+    width:160px;
+}
+
+.buttons{
+    text-align:center;
+    margin-top:20px;
+}
+
+.btn{
+    background:#0284c7;
+    color:white;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:8px;
+    margin:5px;
+    border:none;
+    cursor:pointer;
+}
+
+.footer{
+    background:#f1f5f9;
+    text-align:center;
+    padding:15px;
+    font-size:14px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="boarding-pass">
+
+    <div class="header">
+        <h1>🛫 SKYPORT AIRLINES</h1>
+        <h3>E-BOARDING PASS</h3>
+    </div>
+
+    <div class="content">
+
+        <div class="route">
+            <div>
+                <div class="city">{{ booking[2] }}</div>
+                <small>Departure</small>
+            </div>
+
+            <div class="arrow">✈</div>
+
+            <div>
+                <div class="city">{{ booking[3] }}</div>
+                <small>Arrival</small>
+            </div>
+        </div>
+
+        <div class="grid">
+
+            <div class="box">
+                <p class="label">Passenger Name</p>
+                <p class="value">{{ booking[6] }}</p>
+            </div>
+
+            <div class="box">
+                <p class="label">Flight</p>
+                <p class="value">{{ booking[1] }}</p>
+            </div>
+
+            <div class="box">
+                <p class="label">Seat Number</p>
+                <p class="value">{{ booking[8] }}</p>
+            </div>
+
+            <div class="box">
+                <p class="label">PNR</p>
+                <p class="value">{{ booking[9] }}</p>
+            </div>
+
+            <div class="box">
+                <p class="label">Gate</p>
+                <p class="value">{{ gate }}</p>
+            </div>
+
+            <div class="box">
+                <p class="label">Terminal</p>
+                <p class="value">{{ terminal }}</p>
+            </div>
+
+            <div class="box">
+                <p class="label">Boarding Time</p>
+                <p class="value">{{ boarding_time }}</p>
+            </div>
+
+            <div class="box">
+                <p class="label">Payment Method</p>
+                <p class="value">{{ booking[10] }}</p>
+            </div>
+
+        </div>
+
+        <div class="status">
+            ✅ READY TO BOARD
+        </div>
+
+        <div class="qr">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data={{ qr_data }}">
+        </div>
+
+        <div class="buttons">
+            <button onclick="window.print()" class="btn">
+                Print Boarding Pass
+            </button>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        SkyPort Airlines • Safe Journey ✈
+    </div>
+
+</div>
+
+</body>
+</html>
